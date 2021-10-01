@@ -11,6 +11,7 @@ import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
 
@@ -47,6 +48,7 @@ public class Statistiques extends JPanel {
 		Component verticalStrut_2 = Box.createVerticalStrut(20);
 		panelGauche.add(verticalStrut_2);
 		JPanel panelInscrits = new JPanel();
+		
 		panelInscrits.setBackground(Color.WHITE);
 		panelInscrits.setBorder(new LineBorder(new Color(99, 130, 191), 3, true));
 		panelGauche.add(panelInscrits);
@@ -59,23 +61,23 @@ public class Statistiques extends JPanel {
 		lblApprenants.setFont(new Font("Tempus Sans ITC", Font.BOLD, 22));
 		panelInscrits.add(lblApprenants, BorderLayout.NORTH);
 		
-		JPanel panel_1 = new JPanel();
+		JScrollPane panel_1 = new JScrollPane();
 		panel_1.setBorder(null);
 		panel_1.setBackground(Color.WHITE);
-		panel_1.setPreferredSize(new Dimension(0, 140));
+		panel_1.setPreferredSize(new Dimension(200, 140));
 		panelInscrits.add(panel_1, BorderLayout.CENTER);
 		
-		JLabel lblNewLabel_2 = new JLabel("Nombre total d'inscrits : ");
+		JLabel lblNewLabel_2 = new JLabel("Total d'inscrits : ");
 		lblNewLabel_2.setFont(new Font("Open Sans Semibold", Font.PLAIN, 16));
-		lblNewLabel_2.setBounds(20, 62, 229, 26);
+		lblNewLabel_2.setBounds(20, 62, 133, 26);
 		
-		JLabel lblNombreTotalDinscrits = new JLabel("Nombre total de garçons inscrits : ");
+		JLabel lblNombreTotalDinscrits = new JLabel("Gar\u00E7ons inscrits : ");
 		lblNombreTotalDinscrits.setFont(new Font("Open Sans Semibold", Font.PLAIN, 16));
-		lblNombreTotalDinscrits.setBounds(20, 0, 244, 26);
+		lblNombreTotalDinscrits.setBounds(20, 0, 142, 26);
 		
-		JLabel lblNombreTotalDe = new JLabel("Nombre total de filles inscrites : ");
+		JLabel lblNombreTotalDe = new JLabel("Filles inscrites : ");
 		lblNombreTotalDe.setFont(new Font("Open Sans Semibold", Font.PLAIN, 16));
-		lblNombreTotalDe.setBounds(20, 37, 236, 26);
+		lblNombreTotalDe.setBounds(20, 37, 133, 26);
 		panel_1.setLayout(null);
 		panel_1.add(lblNewLabel_2);
 		panel_1.add(lblNombreTotalDinscrits);
@@ -85,7 +87,7 @@ public class Statistiques extends JPanel {
 		totalHommeInscrit.setForeground(new Color(30, 144, 255));
 		totalHommeInscrit.setFont(new Font("Modern No. 20", Font.BOLD, 28));
 		totalHommeInscrit.setHorizontalAlignment(SwingConstants.RIGHT);
-		totalHommeInscrit.setBounds(259, 0, 95, 26);
+		totalHommeInscrit.setBounds(172, 0, 182, 26);
 		panel_1.add(totalHommeInscrit);
 		
 		totalFilleInscrite = new JLabel();
@@ -99,7 +101,7 @@ public class Statistiques extends JPanel {
 		totalInscrit.setHorizontalAlignment(SwingConstants.RIGHT);
 		totalInscrit.setForeground(new Color(30, 144, 255));
 		totalInscrit.setFont(new Font("Modern No. 20", Font.BOLD, 28));
-		totalInscrit.setBounds(259, 62, 95, 26);
+		totalInscrit.setBounds(163, 62, 191, 26);
 		panel_1.add(totalInscrit);
 		
 		JLabel label_1 = new JLabel("Tout Payer");
@@ -143,9 +145,9 @@ public class Statistiques extends JPanel {
 		RienPayer.setBounds(193, 177, 161, 26);
 		panel_1.add(RienPayer);
 		
-		JLabel lblNombreTotalDophlin = new JLabel("Nombre total d'ophelin : ");
-		lblNombreTotalDophlin.setFont(new Font("Dialog", Font.PLAIN, 16));
-		lblNombreTotalDophlin.setBounds(20, 88, 229, 26);
+		JLabel lblNombreTotalDophlin = new JLabel("Total d'ophelin : ");
+		lblNombreTotalDophlin.setFont(new Font("Open Sans Semibold", Font.PLAIN, 16));
+		lblNombreTotalDophlin.setBounds(20, 88, 142, 26);
 		panel_1.add(lblNombreTotalDophlin);
 		
 		ophlin = new JLabel();
@@ -153,7 +155,7 @@ public class Statistiques extends JPanel {
 		ophlin.setHorizontalAlignment(SwingConstants.RIGHT);
 		ophlin.setForeground(new Color(30, 144, 255));
 		ophlin.setFont(new Font("Modern No. 20", Font.BOLD, 28));
-		ophlin.setBounds(259, 88, 95, 26);
+		ophlin.setBounds(172, 88, 182, 26);
 		panel_1.add(ophlin);
 		
 		Component verticalStrut = Box.createVerticalStrut(20);

@@ -168,9 +168,9 @@ public class NewYear extends JPanel {
 					new AnneeScolaire().insertAnneeScolaire(DonneeStatiques.f2.format(txtDebutAnnee.getDate()), DonneeStatiques.f2.format(txtFinAnnee.getDate()), NewYear.this.anneeScolaire());
 					miseAjourScolarite();
 					NewYear.this.parent.refreshAll();
-					/*int reponse = JOptionPane.showConfirmDialog(null, "Vous devez redémarrer l'application pour prendre en compte la nouvelle année scolaire.\n Souhaitez vous redémarrer en même temps ? ");
+					int reponse = JOptionPane.showConfirmDialog(null, "Vous devez redémarrer l'application pour prendre en compte la nouvelle année scolaire.\n Souhaitez vous redémarrer en même temps ? ");
 					if(reponse == 0)
-					System.exit(0);*/
+					System.exit(0);
 					
 				}else {
 					DonneeStatiques.messageDialog("L'année scolaire n'est pas valide. \nChoisissez une date debut et de fin  dont l'ecart donne au moins 8 mois et au plus 13 mois.", 1);

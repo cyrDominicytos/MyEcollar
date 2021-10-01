@@ -1,0 +1,6 @@
+===================   Licence Code   ======================
+	C00x1 => File Not exist  but has config line
+	C00x2 => File exist, has config line but expiration date is change
+	C00x3 => File exist, has config line, explode is 3 but can't access
+	C00x4 => File exist, has config line, explode is not 3
+	

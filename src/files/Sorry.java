@@ -44,7 +44,7 @@ public class Sorry extends JDialog {
 			txtpnDsolCetteFonctionnalit.setEditable(false);
 			txtpnDsolCetteFonctionnalit.setForeground(new Color(112, 128, 144));
 			txtpnDsolCetteFonctionnalit.setFont(new Font("Sitka Banner", Font.BOLD, 16));
-			txtpnDsolCetteFonctionnalit.setText("Désolé cette fonctionnalité est toujours en cours de développement. Veillez effectuer une mise à  jour puis réessayer plus tard.");
+			txtpnDsolCetteFonctionnalit.setText("Désolé cette fonctionnalité est toujours en cours de développement. Veuillez effectuer une mise à  jour puis réessayer plus tard.");
 			txtpnDsolCetteFonctionnalit.setBounds(122, 72, 306, 93);
 			contentPanel.add(txtpnDsolCetteFonctionnalit);
 		}

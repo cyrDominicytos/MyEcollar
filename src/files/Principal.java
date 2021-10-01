@@ -9,6 +9,7 @@ import java.awt.SystemColor;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.InputEvent;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -33,6 +34,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JSeparator;
 import javax.swing.JSplitPane;
 import javax.swing.JTree;
+import javax.swing.KeyStroke;
 import javax.swing.UIManager;
 import javax.swing.border.EmptyBorder;
 import javax.swing.event.TreeSelectionEvent;
@@ -44,6 +46,7 @@ import javax.swing.tree.DefaultTreeModel;
 import Model.DonneeConnexion;
 import javax.swing.JComboBox;
 import java.awt.event.ItemListener;
+import java.awt.event.KeyEvent;
 import java.awt.event.ItemEvent;
 
 @SuppressWarnings("serial")
@@ -89,7 +92,7 @@ public class Principal extends JFrame {
 		setPreferredSize(getToolkit().getScreenSize());
 		setSize(getToolkit().getScreenSize());
 		setIconImage(Toolkit.getDefaultToolkit().getImage(Principal.class.getResource("/icones/app1.png")));
-		setTitle("Ecollar 1.0.1");
+		setTitle(DonneeStatiques.appName);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setLocationRelativeTo(null);
 		setBounds(0, 0, 1066, 708);
@@ -451,13 +454,37 @@ public class Principal extends JFrame {
 		mntmChanger.setFont(new Font("Georgia", Font.PLAIN, 15));
 		mnTraitements.add(mntmChanger);
 		
+		JMenuItem mntmConfig = new JMenuItem("Configuration");
+		mntmConfig.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+				scrollPaneDroit.removeAll();
+				scrollPaneDroit = new JScrollPane();
+				splitPane.setRightComponent(scrollPaneDroit);
+				scrollPaneDroit.setViewportView(new Configuration(Principal.this));
+				
+				Principal.this.scrollPaneDroit.revalidate();
+				btnAcceuil.setEnabled(true);
+				anneeStatistique.setVisible(false);
+			}
+		});
+		mntmConfig.setPreferredSize(new Dimension(250, 30));
+		mntmConfig.setFont(new Font("Georgia", Font.PLAIN, 15));
+		mnTraitements.add(mntmConfig);
+		
 		
 		
 		JMenu mnAide = new JMenu("Aide");
 		mnAide.setMnemonic('A');
 		menuBar.add(mnAide);
 		
-		JMenuItem mntmhelp = new JMenuItem("Manuel utilisateur      F1");
+		JMenuItem mntmAcivate = new JMenuItem("Activer le logiciel");
+		mntmAcivate.setMnemonic(KeyEvent.VK_F2);
+		//mntmAcivate.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_F2, 0));
+		mntmAcivate.setIcon(new ImageIcon(Principal.class.getResource("/icones/checkmark_success_96.png")));
+		mnAide.add(mntmAcivate);
+		
+		JMenuItem mntmhelp = new JMenuItem("Manuel utilisateur");
 		
 		mntmhelp.setIcon(new ImageIcon(Principal.class.getResource("/icones/manual.png")));
 		mnAide.add(mntmhelp);
@@ -484,8 +511,8 @@ public class Principal extends JFrame {
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
 		
-		internalFrame = new JInternalFrame("Année scolaire "+ new DonneeStatiques().anneeCourante);
-		
+		internalFrame = new JInternalFrame( DonneeStatiques.demo==null ? ("Année scolaire "+ new DonneeStatiques().anneeCourante) : (DonneeStatiques.demo) );
+		System.out.println(DonneeStatiques.demo);
 		internalFrame.setVisible(true);
 		internalFrame.getContentPane().setBackground(new Color(255, 255, 255));
 		contentPane.add(internalFrame, BorderLayout.CENTER);
@@ -741,6 +768,15 @@ public class Principal extends JFrame {
 			}
 		});
 		
+		mntmAcivate.addActionListener(new ActionListener() {
+			@SuppressWarnings("deprecation")
+			public void actionPerformed(ActionEvent arg0) {
+				Activate active = new Activate();
+				active.setLocationRelativeTo(null);
+				active.show();
+			}
+		});
+		
 		mntmhelp.addActionListener(new ActionListener() {
 			@SuppressWarnings("deprecation")
 			public void actionPerformed(ActionEvent arg0) {
@@ -890,7 +926,7 @@ public class Principal extends JFrame {
 		tree.setModel(new DefaultTreeModel(
 			new DefaultMutableTreeNode("Menu") {
 				{
-					DefaultMutableTreeNode node_1;
+					/*DefaultMutableTreeNode node_1;
 					node_1 = new DefaultMutableTreeNode("Scolarit\u00E9");
 						node_1.add(new DefaultMutableTreeNode("Nouveau paiement"));
 						node_1.add(new DefaultMutableTreeNode("Liste des paiements"));
@@ -913,7 +949,7 @@ public class Principal extends JFrame {
 						node_1.add(new DefaultMutableTreeNode("Nouvelle ann\u00E9e scolaire"));
 						node_1.add(new DefaultMutableTreeNode("Liste des ann\u00E9es scolaire"));
 						node_1.add(new DefaultMutableTreeNode("Informations de l'\u00E9cole"));
-					add(node_1);
+					add(node_1);*/
 				}
 			}
 		));
@@ -983,7 +1019,7 @@ public class Principal extends JFrame {
 		new DonneeStatiques().refresh();
 		anneeStatistique.setModel(new DonneeStatiques().anneeScolaire());
 		label.setText(DonneeStatiques.nomEcole);
-		internalFrame.setTitle("Année scolaire "+ new DonneeStatiques().anneeCourante);
+		internalFrame.setTitle( DonneeStatiques.demo==null ? ("Année scolaire "+ new DonneeStatiques().anneeCourante) : (DonneeStatiques.demo));
 		
 		Principal.this.panel.revalidate();
 		Principal.this.internalFrame.revalidate();

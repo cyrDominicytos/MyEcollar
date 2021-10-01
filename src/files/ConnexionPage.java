@@ -34,6 +34,8 @@ import Model.Authentification;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.IOException;
+import javax.swing.event.CaretListener;
+import javax.swing.event.CaretEvent;
 
 @SuppressWarnings("serial")
 public class ConnexionPage extends JFrame implements KeyListener{
@@ -240,6 +242,13 @@ public class ConnexionPage extends JFrame implements KeyListener{
 		errorLabel.setBounds(329, 139, 262, 28);
 		logonForm.getContentPane().add(errorLabel);
 		
+		JLabel lblVoir = new JLabel("");
+		lblVoir.setIcon(new ImageIcon(ConnexionPage.class.getResource("/icones/16x16_About.png")));
+		lblVoir.setForeground(Color.BLACK);
+		lblVoir.setFont(new Font("SansSerif", Font.BOLD, 14));
+		lblVoir.setBounds(563, 317, 28, 19);
+		logonForm.getContentPane().add(lblVoir);
+		
 		
 	}
 
@@ -267,7 +276,6 @@ public class ConnexionPage extends JFrame implements KeyListener{
 
 	@Override
 	public void keyTyped(KeyEvent key) {
-		System.out.println("appel");
 		if(key.getKeyCode() == KeyEvent.VK_ENTER)
 		{
 			authentifier();
@@ -280,11 +288,26 @@ public class ConnexionPage extends JFrame implements KeyListener{
 	{
 		if(new Authentification().Authentifier(loginTextField.getText(), passTextField.getText()))
 		{
-			errorLabel.setVisible(false);
-			
-			ConnexionPage.this.logonForm.setVisible(false);
-			Principal frame = new Principal();
-			frame.show();					
+			switch (Generate.checkIfHasLicence()) {
+			case 20:
+				errorLabel.setVisible(false);
+				ConnexionPage.this.logonForm.setVisible(false);
+				Principal frame = new Principal();
+				frame.show();
+				break;
+			case 21:
+				DonneeStatiques.messageDialog("Votre version d'essai est arrivée à expiration. \nVeuillez contactez le fournisseur via : "+DonneeStatiques.support, 1);
+				break;
+			case 22:
+				
+				DonneeStatiques.messageDialog("Vous ne disposez plus des droits pour acceder à cette version de l'application.\nVeuillez contactez le fournisseur via : "+DonneeStatiques.support +" \nCode "+DonneeStatiques.erroCode, 3);
+				break;
+			default:
+				
+				DonneeStatiques.messageDialog("Vous ne disposez plus des droits pour acceder à cette version de l'application.\nVeuillez contactez le fournisseur via : "+DonneeStatiques.support +" \nCode "+DonneeStatiques.erroCode, 3);
+				break;
+			}
+								
 			
 		}else {
 			errorLabel.setVisible(true);

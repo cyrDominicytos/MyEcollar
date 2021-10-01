@@ -15,6 +15,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.MessageFormat;
 import java.text.SimpleDateFormat;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Locale;
 import java.util.Properties;
@@ -32,6 +33,7 @@ import javax.swing.JTable.PrintMode;
 import Model.AnneeScolaire;
 import Model.Apprenant;
 import Model.Classe;
+import Model.Config;
 import Model.Depense;
 import Model.DonneeConnexion;
 import Model.Enseignant;
@@ -45,6 +47,10 @@ public class DonneeStatiques extends JPanel {
 	//public DefaultComboBoxModel<String> AnneeScolaireComboBoxModel = null;
 	
 	public static String db = "ECOLARBDD";
+	public static String appName = "Ecollar 2.0";
+	public static String devise = "Avec ecollar faites le vite faites le bien";
+	public static String demo = null;
+	public static String support = "ecollar.contact@gmail.com";
 	private static ResultSet result = null;
 	public  String anneeCourante = new AnneeScolaire().selectCurrentAnneeScolaire();
 	
@@ -54,12 +60,16 @@ public class DonneeStatiques extends JPanel {
 	public static SimpleDateFormat f=new SimpleDateFormat( "dd/MM/yyyy", Locale.FRANCE); 
 	public static SimpleDateFormat f2=new SimpleDateFormat( "yyyy/MM/dd", Locale.FRANCE); 
 	public static SimpleDateFormat f3=new SimpleDateFormat( "yyyy-MM-dd", Locale.FRANCE); 
+	public static SimpleDateFormat dbformat=new SimpleDateFormat( "yyyy-MM-dd HH:mm:ss", Locale.FRANCE); 
+	public static SimpleDateFormat dbformat2=new SimpleDateFormat( "HH:mm:ss"); 
 	public static SimpleDateFormat recupererAnnee=new SimpleDateFormat( "yyyy", Locale.FRANCE); 
 	public static String nomEcole = new DonneeConnexion().selectNomCurrentSchool();
 	public static String pwdEcole = new DonneeConnexion().selectPWDCurrentSchool();
 	public static String finAnnee = new AnneeScolaire().selectCurrentDateFinAnneeScolaire();
-	
+	public static int isBoot = new Config().ProgramsIsBoot();
+	public static int hasLicence = new Config().ProgramsHasLicence();
 	public static int countLigneAffichee = 0, db_index =0, frais;
+	public static String erroCode = "";
 	
 	public void refresh()
 	{
